@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Para Meli</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body{
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background: linear-gradient(180deg,#fff4e6,#ffe8cc);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  min-height:100vh;
+  padding:20px;
+}
+
+.card{
+  width:100%;
+  max-width:420px; /* Perfecto para iPhone */
+  background:#ffffff;
+  padding:28px 22px;
+  border-radius:28px;
+  box-shadow:0 20px 50px rgba(255,140,0,0.18);
+  text-align:center;
+  animation:fadeIn 0.8s ease;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  color:#e67e22;
+  font-size:24px;
+  margin-bottom:12px;
+}
+
+p{
+  font-size:14.5px;
+  line-height:1.7;
+  color:#555;
+  margin-bottom:18px;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:16px;
+  margin:7px 0;
+  font-size:14px;
+  font-weight:500;
+  background:linear-gradient(135deg,#ff8c00,#ffa94d);
+  color:white;
+  box-shadow:0 10px 25px rgba(255,140,0,0.3);
+  transition:0.25s ease;
+}
+
+button:active{
+  transform:scale(0.96);
+}
+
+.back-btn{
+  background:#444;
+  box-shadow:none;
+}
+
+.section img{
+  width:100%;
+  border-radius:20px;
+  margin-top:14px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.12);
+}
+
+.sisters-img{
+  width:100%;
+  border-radius:22px;
+  margin-top:20px;
+  box-shadow:0 8px 20px rgba(255,140,0,0.15);
+}
+
+.sisters-text{
+  font-size:13px;
+  font-style:italic;
+  color:#e67e22;
+  margin-top:12px;
+}
+
+.hidden{
+  display:none;
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(15px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- INTRO -->
+<div class="card" id="intro">
+<h1>Para ti, Meli</h1>
+
+<p>
+No todo lo que se escanea es casualidad…  
+A veces es el destino queriendo decir algo bonito.
+</p>
+
+<button onclick="enter()">Entrar ✨</button>
+</div>
+
+<!-- MENU -->
+<div class="card hidden" id="menu">
+<h1>Elige tu sorpresa ✨</h1>
+
+<button onclick="showSection('Carta')">📜 Una carta especial</button>
+<button onclick="showSection('Comida')">☕ Un cafecito</button>
+<button onclick="showSection('Miklo')">🤍 Hola soy Miklo</button>
+<button onclick="showSection('Detalle')">🍰 Algo dulce</button>
+<button onclick="showSection('Drink')">🍹 Un drink</button>
+
+<img src="hermanas.jpg" class="sisters-img">
+
+<p class="sisters-text">
+Las hermanas discuten…  
+pero cuando el cariño es real,  
+siempre encuentran el camino de regreso.
+</p>
+</div>
+
+<!-- CARTA -->
+<div class="card section hidden" id="Carta">
+<h1>Un mensaje sincero</h1>
+<p>
+Hay cosas que no se dicen por orgullo…  
+pero sí se sienten con el corazón.
+</p>
+<img src="carta1.jpg">
+<button class="back-btn" onclick="back()">Volver</button>
+</div>
+
+<!-- COMIDA -->
+<div class="card section hidden" id="Comida">
+<h1>¿Un cafecito? ☕</h1>
+<p>
+Porque las mejores conversaciones  
+empiezan con algo caliente entre manos.
+</p>
+<img src="comida1.jpg">
+<img src="comida2.jpg">
+<button class="back-btn" onclick="back()">Volver</button>
+</div>
+
+<!-- MIKLO -->
+<div class="card section hidden" id="Miklo">
+<h1>Miklo vino a hablar</h1>
+<p>
+Dice que Fernando no es perfecto…  
+pero que sí es sincero cuando se trata de ti.
+</p>
+<img src="perdon1.jpg">
+<img src="perdon2.jpg">
+<button class="back-btn" onclick="back()">Volver</button>
+</div>
+
+<!-- DETALLE -->
+<div class="card section hidden" id="Detalle">
+<h1>Algo dulce 🍰</h1>
+<p>
+Porque tu sonrisa vale más  
+que cualquier detalle material.
+</p>
+<img src="detalle1.jpg">
+<img src="detalle2.jpg">
+<button class="back-btn" onclick="back()">Volver</button>
+</div>
+
+<!-- DRINK -->
+<div class="card section hidden" id="Drink">
+<h1>Un drink🍹</h1>
+<p>
+No importa qué sea…  
+Salud.
+</p>
+<img src="drink.jpg">
+<button class="back-btn" onclick="back()">Volver</button>
+</div>
+
+<script>
+
+let visitas = localStorage.getItem("meli_visitas") || 0;
+
+if(visitas >= 4){
+  document.body.innerHTML = `
+  <div style="display:flex;justify-content:center;align-items:center;height:100vh;padding:20px;text-align:center;font-family:Poppins;">
+    <div>
+      <h1 style="color:#ff8c00;">Este mensaje ya cumplió su propósito</h1>
+      <p>Si quieres verlo otra vez… tendrás que pedírselo con una sonrisa.</p>
+    </div>
+  </div>
+  `;
+}else{
+  visitas++;
+  localStorage.setItem("meli_visitas", visitas);
+}
+
+function enter(){
+  document.getElementById("intro").classList.add("hidden");
+  document.getElementById("menu").classList.remove("hidden");
+}
+
+function showSection(id){
+  document.getElementById("menu").classList.add("hidden");
+  document.getElementById(id).classList.remove("hidden");
+}
+
+function back(){
+  document.querySelectorAll(".section").forEach(s=>s.classList.add("hidden"));
+  document.getElementById("menu").classList.remove("hidden");
+}
+
+</script>
+
+</body>
+</html>
